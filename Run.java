@@ -31,19 +31,19 @@ public class Run {
            BufferedReader r = new BufferedReader((new InputStreamReader(System.in)));
 
            while(!xml.exists()){
-               System.out.println("Файл не найден");
+               System.out.println("Р¤Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ");
                xml = new File(r.readLine());
            }
 
            while (!xml.canWrite() || !xml.canRead()){
-               System.out.println("Недостаточно прав на файл");
+               System.out.println("РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїСЂР°РІ РЅР° С„Р°Р№Р»");
                xml = new File(r.readLine());
            }
 
         if(!(new BufferedReader(new InputStreamReader(new FileInputStream(newXml))).readLine()==null)){
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             while(true){
-                System.out.println("Хотите продолжить свои предыдущие действия?");
+                System.out.println("РҐРѕС‚РёС‚Рµ РїСЂРѕРґРѕР»Р¶РёС‚СЊ СЃРІРѕРё РїСЂРµРґС‹РґСѓС‰РёРµ РґРµР№СЃС‚РІРёСЏ?");
                 String c = reader.readLine();
                 if(c.equals("Yes")){
                    Files.copy(newXml.toPath(),new FileOutputStream(xml));
@@ -67,7 +67,7 @@ public class Run {
             NodeList nodeList = doc.getElementsByTagName("MusicBand");
             NodeList nodeList2 = doc.getElementsByTagName("Coordinates");
             NodeList nodeList3 = doc.getElementsByTagName("Album");
-            // создадим из него список объектов MusicBand
+            // СЃРѕР·РґР°РґРёРј РёР· РЅРµРіРѕ СЃРїРёСЃРѕРє РѕР±СЉРµРєС‚РѕРІ MusicBand
             for (int i = 0; i < nodeList.getLength(); i++) {
                 MusicBand musicBand = new MusicBand();
                 getMusicBand(musicBand, nodeList.item(i));
@@ -76,7 +76,7 @@ public class Run {
                 data.put(i, musicBand);
             }
         } catch (Exception exc) {
-            System.out.println("Файл нельзя обработать");
+            System.out.println("Р¤Р°Р№Р» РЅРµР»СЊР·СЏ РѕР±СЂР°Р±РѕС‚Р°С‚СЊ");
         }
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
@@ -88,9 +88,9 @@ public class Run {
                 }
                 start(command);
             } catch (NumberFormatException e) {
-                System.out.println("Значение введено неверно");
+                System.out.println("Р—РЅР°С‡РµРЅРёРµ РІРІРµРґРµРЅРѕ РЅРµРІРµСЂРЅРѕ");
             } catch (ArrayIndexOutOfBoundsException ex) {
-                System.out.println("Вы не указали значение");
+                System.out.println("Р’С‹ РЅРµ СѓРєР°Р·Р°Р»Рё Р·РЅР°С‡РµРЅРёРµ");
             } catch (TransformerException | ParserConfigurationException e) {
                 e.printStackTrace();
             }
@@ -107,7 +107,7 @@ public class Run {
             if (i == 0) {
                 i++;
                 continue;
-            } //пропускаем первую итерацию чтобы не записывать 3 первые байта xml
+            } //РїСЂРѕРїСѓСЃРєР°РµРј РїРµСЂРІСѓСЋ РёС‚РµСЂР°С†РёСЋ С‡С‚РѕР±С‹ РЅРµ Р·Р°РїРёСЃС‹РІР°С‚СЊ 3 РїРµСЂРІС‹Рµ Р±Р°Р№С‚Р° xml
             fileOutputStream.write(data);
         }
         fileReader.close();
@@ -165,7 +165,7 @@ public class Run {
                 int i = Integer.parseInt(line[1]);
                 for (Map.Entry<Integer, MusicBand> band : data.entrySet()) {
                     if (band.getKey().equals(i)) {
-                        System.out.println("Элемент с таким ключом уже существует");
+                        System.out.println("Р­Р»РµРјРµРЅС‚ СЃ С‚Р°РєРёРј РєР»СЋС‡РѕРј СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
                         k = false;
                     }
                 }
@@ -180,15 +180,15 @@ public class Run {
                 int count = 0;
                 for (Map.Entry<Integer, MusicBand> band : data.entrySet()) {
                     if (band.getValue().getId() == j) {
-                        System.out.println("Текущий элемент " + band.getValue());
-                        System.out.println("Введите новые данные для обновления элемента");
+                        System.out.println("РўРµРєСѓС‰РёР№ СЌР»РµРјРµРЅС‚ " + band.getValue());
+                        System.out.println("Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Рµ РґР°РЅРЅС‹Рµ РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р°");
                         band.getValue().update();
-                        System.out.println("Данные обновлены");
+                        System.out.println("Р”Р°РЅРЅС‹Рµ РѕР±РЅРѕРІР»РµРЅС‹");
                         XmlWriter.write(data, newXml);
                     } else count++;
                 }
                 if (count == data.size()) {
-                    System.out.println("Элемента с таким id не существует");
+                    System.out.println("Р­Р»РµРјРµРЅС‚Р° СЃ С‚Р°РєРёРј id РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
                 }
                 break;
 
@@ -198,17 +198,17 @@ public class Run {
 
             case "remove_key":
                 if (data.get(Integer.parseInt(line[1])) == null) {
-                    System.out.println("Элемента с таким ключом не существует");
+                    System.out.println("Р­Р»РµРјРµРЅС‚Р° СЃ С‚Р°РєРёРј РєР»СЋС‡РѕРј РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
                 } else {
                     data.remove(Integer.parseInt(line[1]));
-                    System.out.println("Элемент успешно удален");
+                    System.out.println("Р­Р»РµРјРµРЅС‚ СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅ");
                 }
                 XmlWriter.write(data,newXml);
                 break;
 
             case "clear":
                 data.entrySet().removeIf(entry -> entry.getKey() != null);
-                System.out.println("Все данные удалены");
+                System.out.println("Р’СЃРµ РґР°РЅРЅС‹Рµ СѓРґР°Р»РµРЅС‹");
                 XmlWriter.write(data,newXml);
                 break;
 
@@ -218,7 +218,7 @@ public class Run {
                     FileReader fileReader = new FileReader(line[1]);
                     reader = new BufferedReader(fileReader);
                 } catch (FileNotFoundException e) {
-                    System.out.println("Файл не найден");
+                    System.out.println("Р¤Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ");
                     break;
                 }
                 readAndExecute(reader);
@@ -226,18 +226,18 @@ public class Run {
 
             case "save":
                 save();
-                System.out.println("Данные сохранены в файл " + xml);
+                System.out.println("Р”Р°РЅРЅС‹Рµ СЃРѕС…СЂР°РЅРµРЅС‹ РІ С„Р°Р№Р» " + xml);
                 break;
 
             case "remove_greater":
                 removeGreater();
-                System.out.println("Все значения больше заданного удалены.");
+                System.out.println("Р’СЃРµ Р·РЅР°С‡РµРЅРёСЏ Р±РѕР»СЊС€Рµ Р·Р°РґР°РЅРЅРѕРіРѕ СѓРґР°Р»РµРЅС‹.");
                 XmlWriter.write(data,newXml);
                 break;
 
             case "remove_lower":
                 removeLower();
-                System.out.println("Все значения меньше заданного удалены");
+                System.out.println("Р’СЃРµ Р·РЅР°С‡РµРЅРёСЏ РјРµРЅСЊС€Рµ Р·Р°РґР°РЅРЅРѕРіРѕ СѓРґР°Р»РµРЅС‹");
                 XmlWriter.write(data,newXml);
                 break;
 
@@ -254,7 +254,7 @@ public class Run {
                     removeAnyByGenre(line[1]);
                 }
                 catch (IllegalArgumentException e){
-                    System.out.println("Введите жанр корректно");
+                    System.out.println("Р’РІРµРґРёС‚Рµ Р¶Р°РЅСЂ РєРѕСЂСЂРµРєС‚РЅРѕ");
                 } catch (TransformerException | ParserConfigurationException e) {
                     e.printStackTrace();
                 }
@@ -266,7 +266,7 @@ public class Run {
                 break;
 
             default:
-                System.out.println("Такая команда не подерживается");
+                System.out.println("РўР°РєР°СЏ РєРѕРјР°РЅРґР° РЅРµ РїРѕРґРµСЂР¶РёРІР°РµС‚СЃСЏ");
                 break;
 
         }
@@ -274,27 +274,27 @@ public class Run {
 
 
     public static void printHelp() {
-        System.out.println("info : вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)");
-        System.out.println("show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении");
-        System.out.println("insert key {element} : добавить новый элемент с заданным ключом");
-        System.out.println("update id {element} : обновить значение элемента коллекции, id которого равен заданному");
-        System.out.println("remove_key key : удалить элемент из коллекции по его ключу");
-        System.out.println("clear : очистить коллекцию");
-        System.out.println("save : сохранить коллекцию в файл");
-        System.out.println("execute_script file_name : считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.");
-        System.out.println("exit : завершить программу (без сохранения в файл");
-        System.out.println("remove_greater {element} : удалить из коллекции все элементы, превышающие заданный");
-        System.out.println("remove_lower {element} : удалить из коллекции все элементы, меньшие, чем заданный");
-        System.out.println("replace_if_greater key {element} : заменить значение по ключу, если новое значение больше старого");
-        System.out.println("remove_any_by_genre genre : удалить из коллекции один элемент, значение поля genre которого эквивалентно заданному");
-        System.out.println("filter_greater_than_number_of_participants numberOfParticipants : вывести элементы, значение поля numberOfParticipants которых больше заданного");
-        System.out.println("print_field_ascending_best_album : вывести значения поля bestAlbum в порядке возрастания");
+        System.out.println("info : РІС‹РІРµСЃС‚Рё РІ СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РїРѕС‚РѕРє РІС‹РІРѕРґР° РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РєРѕР»Р»РµРєС†РёРё (С‚РёРї, РґР°С‚Р° РёРЅРёС†РёР°Р»РёР·Р°С†РёРё, РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ Рё С‚.Рґ.)");
+        System.out.println("show : РІС‹РІРµСЃС‚Рё РІ СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РїРѕС‚РѕРє РІС‹РІРѕРґР° РІСЃРµ СЌР»РµРјРµРЅС‚С‹ РєРѕР»Р»РµРєС†РёРё РІ СЃС‚СЂРѕРєРѕРІРѕРј РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРё");
+        System.out.println("insert key {element} : РґРѕР±Р°РІРёС‚СЊ РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ СЃ Р·Р°РґР°РЅРЅС‹Рј РєР»СЋС‡РѕРј");
+        System.out.println("update id {element} : РѕР±РЅРѕРІРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РєРѕР»Р»РµРєС†РёРё, id РєРѕС‚РѕСЂРѕРіРѕ СЂР°РІРµРЅ Р·Р°РґР°РЅРЅРѕРјСѓ");
+        System.out.println("remove_key key : СѓРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚ РёР· РєРѕР»Р»РµРєС†РёРё РїРѕ РµРіРѕ РєР»СЋС‡Сѓ");
+        System.out.println("clear : РѕС‡РёСЃС‚РёС‚СЊ РєРѕР»Р»РµРєС†РёСЋ");
+        System.out.println("save : СЃРѕС…СЂР°РЅРёС‚СЊ РєРѕР»Р»РµРєС†РёСЋ РІ С„Р°Р№Р»");
+        System.out.println("execute_script file_name : СЃС‡РёС‚Р°С‚СЊ Рё РёСЃРїРѕР»РЅРёС‚СЊ СЃРєСЂРёРїС‚ РёР· СѓРєР°Р·Р°РЅРЅРѕРіРѕ С„Р°Р№Р»Р°. Р’ СЃРєСЂРёРїС‚Рµ СЃРѕРґРµСЂР¶Р°С‚СЃСЏ РєРѕРјР°РЅРґС‹ РІ С‚Р°РєРѕРј Р¶Рµ РІРёРґРµ, РІ РєРѕС‚РѕСЂРѕРј РёС… РІРІРѕРґРёС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІ РёРЅС‚РµСЂР°РєС‚РёРІРЅРѕРј СЂРµР¶РёРјРµ.");
+        System.out.println("exit : Р·Р°РІРµСЂС€РёС‚СЊ РїСЂРѕРіСЂР°РјРјСѓ (Р±РµР· СЃРѕС…СЂР°РЅРµРЅРёСЏ РІ С„Р°Р№Р»");
+        System.out.println("remove_greater {element} : СѓРґР°Р»РёС‚СЊ РёР· РєРѕР»Р»РµРєС†РёРё РІСЃРµ СЌР»РµРјРµРЅС‚С‹, РїСЂРµРІС‹С€Р°СЋС‰РёРµ Р·Р°РґР°РЅРЅС‹Р№");
+        System.out.println("remove_lower {element} : СѓРґР°Р»РёС‚СЊ РёР· РєРѕР»Р»РµРєС†РёРё РІСЃРµ СЌР»РµРјРµРЅС‚С‹, РјРµРЅСЊС€РёРµ, С‡РµРј Р·Р°РґР°РЅРЅС‹Р№");
+        System.out.println("replace_if_greater key {element} : Р·Р°РјРµРЅРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РїРѕ РєР»СЋС‡Сѓ, РµСЃР»Рё РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ Р±РѕР»СЊС€Рµ СЃС‚Р°СЂРѕРіРѕ");
+        System.out.println("remove_any_by_genre genre : СѓРґР°Р»РёС‚СЊ РёР· РєРѕР»Р»РµРєС†РёРё РѕРґРёРЅ СЌР»РµРјРµРЅС‚, Р·РЅР°С‡РµРЅРёРµ РїРѕР»СЏ genre РєРѕС‚РѕСЂРѕРіРѕ СЌРєРІРёРІР°Р»РµРЅС‚РЅРѕ Р·Р°РґР°РЅРЅРѕРјСѓ");
+        System.out.println("filter_greater_than_number_of_participants numberOfParticipants : РІС‹РІРµСЃС‚Рё СЌР»РµРјРµРЅС‚С‹, Р·РЅР°С‡РµРЅРёРµ РїРѕР»СЏ numberOfParticipants РєРѕС‚РѕСЂС‹С… Р±РѕР»СЊС€Рµ Р·Р°РґР°РЅРЅРѕРіРѕ");
+        System.out.println("print_field_ascending_best_album : РІС‹РІРµСЃС‚Рё Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ bestAlbum РІ РїРѕСЂСЏРґРєРµ РІРѕР·СЂР°СЃС‚Р°РЅРёСЏ");
     }
 
     public static void printInfo() {
-        System.out.println("Тип коллекции: " + data.getClass().getSimpleName());
-        System.out.println("Дата инициализации: " + date.toString());
-        System.out.println("Количество элементов: " + data.size());
+        System.out.println("РўРёРї РєРѕР»Р»РµРєС†РёРё: " + data.getClass().getSimpleName());
+        System.out.println("Р”Р°С‚Р° РёРЅРёС†РёР°Р»РёР·Р°С†РёРё: " + date.toString());
+        System.out.println("РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ: " + data.size());
     }
 
     public static void show() {
@@ -307,7 +307,7 @@ public class Run {
     public static MusicBand insert() throws IOException {
         MusicBand musicBand = new MusicBand();
         musicBand.update();
-        System.out.println("Группа успешно добавлена");
+        System.out.println("Р“СЂСѓРїРїР° СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅР°");
         return musicBand;
     }
 
@@ -318,7 +318,7 @@ public class Run {
             start(task);
         }
     }
-    //Можно воспользоваться проходом по колекции и записью в файл через цикл, но найденное мной решение через stream показалось мне элегантнее)
+    //РњРѕР¶РЅРѕ РІРѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РїСЂРѕС…РѕРґРѕРј РїРѕ РєРѕР»РµРєС†РёРё Рё Р·Р°РїРёСЃСЊСЋ РІ С„Р°Р№Р» С‡РµСЂРµР· С†РёРєР», РЅРѕ РЅР°Р№РґРµРЅРЅРѕРµ РјРЅРѕР№ СЂРµС€РµРЅРёРµ С‡РµСЂРµР· stream РїРѕРєР°Р·Р°Р»РѕСЃСЊ РјРЅРµ СЌР»РµРіР°РЅС‚РЅРµРµ)
     public static void save() throws IOException{
         try {
             XmlWriter.write(data,xml);
@@ -329,21 +329,21 @@ public class Run {
     }
 
     public static void removeGreater() throws IOException {
-        System.out.println("Введите данные Группы. Все группы, которые больше вашей(исходя из логики сравнения), будут удалены.");
+        System.out.println("Р’РІРµРґРёС‚Рµ РґР°РЅРЅС‹Рµ Р“СЂСѓРїРїС‹. Р’СЃРµ РіСЂСѓРїРїС‹, РєРѕС‚РѕСЂС‹Рµ Р±РѕР»СЊС€Рµ РІР°С€РµР№(РёСЃС…РѕРґСЏ РёР· Р»РѕРіРёРєРё СЃСЂР°РІРЅРµРЅРёСЏ), Р±СѓРґСѓС‚ СѓРґР°Р»РµРЅС‹.");
         MusicBand musicBand = new MusicBand();
         musicBand.update();
         data.entrySet().removeIf(entry -> entry.getValue().compareTo(musicBand) < 0);
     }
 
     public static void removeLower() throws IOException {
-        System.out.println("Введите данные Группы. Все группы, которые меньше вашей(исходя из логики сравнения), будут удалены.");
+        System.out.println("Р’РІРµРґРёС‚Рµ РґР°РЅРЅС‹Рµ Р“СЂСѓРїРїС‹. Р’СЃРµ РіСЂСѓРїРїС‹, РєРѕС‚РѕСЂС‹Рµ РјРµРЅСЊС€Рµ РІР°С€РµР№(РёСЃС…РѕРґСЏ РёР· Р»РѕРіРёРєРё СЃСЂР°РІРЅРµРЅРёСЏ), Р±СѓРґСѓС‚ СѓРґР°Р»РµРЅС‹.");
         MusicBand musicBand = new MusicBand();
         musicBand.update();
         data.entrySet().removeIf(entry -> entry.getValue().compareTo(musicBand) > 0);
     }
 
     public static void printFieldAscendingBestAlbum() {
-        System.out.println("Альбомы в порядке возрастания");
+        System.out.println("РђР»СЊР±РѕРјС‹ РІ РїРѕСЂСЏРґРєРµ РІРѕР·СЂР°СЃС‚Р°РЅРёСЏ");
         Comparator<Album> albumComparator = new Comparator<Album>() {
             @Override
             public int compare(Album o1, Album o2) {
@@ -356,12 +356,12 @@ public class Run {
         }
         Collections.sort(albumList, albumComparator);
         for (Album album : albumList) {
-            System.out.println("Название альбома: " + album.getName() + " Продолжительность альбома: " + album.getLength());
+            System.out.println("РќР°Р·РІР°РЅРёРµ Р°Р»СЊР±РѕРјР°: " + album.getName() + " РџСЂРѕРґРѕР»Р¶РёС‚РµР»СЊРЅРѕСЃС‚СЊ Р°Р»СЊР±РѕРјР°: " + album.getLength());
         }
     }
 
     public static void filterGreaterThanNumberOfParticipants(Long numberOfParticipants) {
-        System.out.println("Количество участников больше заданного");
+        System.out.println("РљРѕР»РёС‡РµСЃС‚РІРѕ СѓС‡Р°СЃС‚РЅРёРєРѕРІ Р±РѕР»СЊС€Рµ Р·Р°РґР°РЅРЅРѕРіРѕ");
         for (Map.Entry<Integer, MusicBand> band : data.entrySet()) {
             if (band.getValue().getNumberOfParticipants() > numberOfParticipants) {
                 System.out.println(band.getValue().getNumberOfParticipants());
@@ -377,20 +377,20 @@ public class Run {
             Map.Entry<Integer, MusicBand> entry = iterator.next();
             if (entry.getValue().getGenre().equals(genre)){
                 data.remove(entry.getKey());
-                System.out.println("Элемент был удален");
+                System.out.println("Р­Р»РµРјРµРЅС‚ Р±С‹Р» СѓРґР°Р»РµРЅ");
                 XmlWriter.write(data,newXml);
                 break;
             }
         }
     }
     public static void replaceIfGreaterByKey(Integer key) throws IOException {
-        System.out.println("Введите данные группы. Если ваша группы больше(исходя из логики сравнения), то значение по данному ключу будет заменено.");
+        System.out.println("Р’РІРµРґРёС‚Рµ РґР°РЅРЅС‹Рµ РіСЂСѓРїРїС‹. Р•СЃР»Рё РІР°С€Р° РіСЂСѓРїРїС‹ Р±РѕР»СЊС€Рµ(РёСЃС…РѕРґСЏ РёР· Р»РѕРіРёРєРё СЃСЂР°РІРЅРµРЅРёСЏ), С‚Рѕ Р·РЅР°С‡РµРЅРёРµ РїРѕ РґР°РЅРЅРѕРјСѓ РєР»СЋС‡Сѓ Р±СѓРґРµС‚ Р·Р°РјРµРЅРµРЅРѕ.");
         MusicBand musicBand = new MusicBand();
         musicBand.update();
         if(data.get(key).compareTo(musicBand)>0){
             data.get(key).changeAll(musicBand);
-            System.out.println("Данные изменены");
+            System.out.println("Р”Р°РЅРЅС‹Рµ РёР·РјРµРЅРµРЅС‹");
         }
-        else System.out.println("Данные не изменены");
+        else System.out.println("Р”Р°РЅРЅС‹Рµ РЅРµ РёР·РјРµРЅРµРЅС‹");
     }
 }
