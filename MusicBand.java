@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.time.LocalDateTime;
 
 /**
- *This class used for creating collection of objects and sorting it
+ *This class used for creating collection of objects and sorting
  */
 public class MusicBand implements Comparable<MusicBand> {
     private static int globalID = 0;
