@@ -9,14 +9,14 @@ import java.time.LocalDateTime;
  */
 public class MusicBand implements Comparable<MusicBand> {
     private static int globalID = 0;
-    private int id; //Значение этого поля должно быть уникальным, Значение поля должно быть больше 0, Значение этого поля должно генерироваться автоматически
-    private String name; //Поле не может быть null, Строка не может быть пустой
-    private Coordinates coordinates; //Поле не может быть null
-    private LocalDateTime creationDate; //Значение этого поля должно генерироваться автоматически, Поле не может быть null
-    private Long numberOfParticipants; //Поле может быть null, Значение поля должно быть больше 0
-    private Long singlesCount; //Значение поля должно быть больше 0, Поле не может быть null
-    private MusicGenre genre; //Поле не может быть null
-    private Album bestAlbum; //Поле не может быть null
+    private int id; //Р—РЅР°С‡РµРЅРёРµ СЌС‚РѕРіРѕ РїРѕР»СЏ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ СѓРЅРёРєР°Р»СЊРЅС‹Рј, Р—РЅР°С‡РµРЅРёРµ РїРѕР»СЏ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ 0, Р—РЅР°С‡РµРЅРёРµ СЌС‚РѕРіРѕ РїРѕР»СЏ РґРѕР»Р¶РЅРѕ РіРµРЅРµСЂРёСЂРѕРІР°С‚СЊСЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё
+    private String name; //РџРѕР»Рµ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null, РЎС‚СЂРѕРєР° РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚РѕР№
+    private Coordinates coordinates; //РџРѕР»Рµ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null
+    private LocalDateTime creationDate; //Р—РЅР°С‡РµРЅРёРµ СЌС‚РѕРіРѕ РїРѕР»СЏ РґРѕР»Р¶РЅРѕ РіРµРЅРµСЂРёСЂРѕРІР°С‚СЊСЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё, РџРѕР»Рµ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null
+    private Long numberOfParticipants; //РџРѕР»Рµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null, Р—РЅР°С‡РµРЅРёРµ РїРѕР»СЏ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ 0
+    private Long singlesCount; //Р—РЅР°С‡РµРЅРёРµ РїРѕР»СЏ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ 0, РџРѕР»Рµ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null
+    private MusicGenre genre; //РџРѕР»Рµ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null
+    private Album bestAlbum; //РџРѕР»Рµ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null
 
     public MusicBand() {
         globalID++;
@@ -138,15 +138,15 @@ public class MusicBand implements Comparable<MusicBand> {
 
     public void update() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Введите название Группы");
+        System.out.println("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ Р“СЂСѓРїРїС‹");
         String name = reader.readLine();
         while (name.trim().equals("")||name==null){
-            System.out.println("имя не должно быть пустым или содержать только пробелы. Повторите ввод.");
+            System.out.println("РёРјСЏ РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј РёР»Рё СЃРѕРґРµСЂР¶Р°С‚СЊ С‚РѕР»СЊРєРѕ РїСЂРѕР±РµР»С‹. РџРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ.");
             name = reader.readLine();
         }
         this.setName(name);
 
-        System.out.println("Введите координаты x и y через запятую");
+        System.out.println("Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ x Рё y С‡РµСЂРµР· Р·Р°РїСЏС‚СѓСЋ");
         Double x = null;
         Integer y = null;
         while (x==null||y==null) {
@@ -155,42 +155,42 @@ public class MusicBand implements Comparable<MusicBand> {
                 x = Double.parseDouble(coords[0]);
                 y = Integer.parseInt(coords[1]);
             } catch (Exception e) {
-                System.out.println("Данные введены некорректно. Повторите ввод.");
+                System.out.println("Р”Р°РЅРЅС‹Рµ РІРІРµРґРµРЅС‹ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ. РџРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ.");
             }
         }
         this.setCoordinates( new Coordinates(x,y));
 
-        System.out.println("Введите кол-во участников");
+        System.out.println("Р’РІРµРґРёС‚Рµ РєРѕР»-РІРѕ СѓС‡Р°СЃС‚РЅРёРєРѕРІ");
         Long count = null;
         while (count == null ||count <= 0){
             try{
                 count = Long.parseLong(reader.readLine());
                 if (count <=0){
-                    System.out.println("Количество участников должно быть больше нуля. Повторите ввод");
+                    System.out.println("РљРѕР»РёС‡РµСЃС‚РІРѕ СѓС‡Р°СЃС‚РЅРёРєРѕРІ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ РЅСѓР»СЏ. РџРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ");
                 }
             }
             catch (NumberFormatException e) {
-                System.out.println("Данные введены некорректно. Повторите ввод.");
+                System.out.println("Р”Р°РЅРЅС‹Рµ РІРІРµРґРµРЅС‹ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ. РџРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ.");
             }
         }
         this.setNumberOfParticipants(count);
 
-        System.out.println("Введите количество синглов группы");
+        System.out.println("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРЅРіР»РѕРІ РіСЂСѓРїРїС‹");
         Long singles = null;
         while (singles==null||singles<=0){
             try{
                 singles = Long.parseLong(reader.readLine());
                 if (singles<=0){
-                    System.out.println("Количество синглов должно быть больше нуля. Повторите ввод.");
+                    System.out.println("РљРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРЅРіР»РѕРІ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ РЅСѓР»СЏ. РџРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ.");
                 }
             }
             catch (NumberFormatException e){
-                System.out.println("Данные введены некорректно. Повторите ввод.");
+                System.out.println("Р”Р°РЅРЅС‹Рµ РІРІРµРґРµРЅС‹ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ. РџРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ.");
             }
         }
         this.setSinglesCount(singles);
 
-        System.out.println("Введите жанр. (RAP, PSYCHEDELIC_CLOUD_RAP, POST_ROCK, POST_PUNK, BRIT_POP)");
+        System.out.println("Р’РІРµРґРёС‚Рµ Р¶Р°РЅСЂ. (RAP, PSYCHEDELIC_CLOUD_RAP, POST_ROCK, POST_PUNK, BRIT_POP)");
         MusicGenre mg = null;
         while(mg == null) {
             try {
@@ -198,49 +198,49 @@ public class MusicBand implements Comparable<MusicBand> {
                 str = str.toUpperCase();
                 mg = MusicGenre.valueOf(str);
             } catch (IllegalArgumentException e) {
-                System.out.println("Введите корректный жанр");
+                System.out.println("Р’РІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅС‹Р№ Р¶Р°РЅСЂ");
             }
         }
         this.setGenre(mg);
 
-        System.out.println("Введите название лучшего альбома");
+        System.out.println("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ Р»СѓС‡С€РµРіРѕ Р°Р»СЊР±РѕРјР°");
         String albumName = reader.readLine();
         while (albumName==null||albumName.trim().equals("")){
-            System.out.println("Название альбома не может быть пустым или содержать только пробелы. Повторите ввод.");
+            System.out.println("РќР°Р·РІР°РЅРёРµ Р°Р»СЊР±РѕРјР° РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј РёР»Рё СЃРѕРґРµСЂР¶Р°С‚СЊ С‚РѕР»СЊРєРѕ РїСЂРѕР±РµР»С‹. РџРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ.");
             albumName = reader.readLine();
         }
 
-        System.out.println("Введите продолжительность альбома");
+        System.out.println("Р’РІРµРґРёС‚Рµ РїСЂРѕРґРѕР»Р¶РёС‚РµР»СЊРЅРѕСЃС‚СЊ Р°Р»СЊР±РѕРјР°");
         long length = 0;
         while (length<=0){
             try{
                 length = Long.parseLong(reader.readLine());
                 if (length <= 0) {
-                    System.out.println("Продолжительность альбома должна быть больше нуля");
+                    System.out.println("РџСЂРѕРґРѕР»Р¶РёС‚РµР»СЊРЅРѕСЃС‚СЊ Р°Р»СЊР±РѕРјР° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ РЅСѓР»СЏ");
                 }
             }
             catch (NumberFormatException e) {
-                System.out.println("Продолжительность альбома введена некорректно");
+                System.out.println("РџСЂРѕРґРѕР»Р¶РёС‚РµР»СЊРЅРѕСЃС‚СЊ Р°Р»СЊР±РѕРјР° РІРІРµРґРµРЅР° РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ");
             }
         }
-        System.out.println("Введите количество треков группы");
+        System.out.println("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ С‚СЂРµРєРѕРІ РіСЂСѓРїРїС‹");
         long tracks = 0;
         while (tracks <=0){
             try{
                 tracks = Long.parseLong(reader.readLine());
                 if (tracks <= 0) {
-                    System.out.println("Количество треков должно быть больше нуля");
+                    System.out.println("РљРѕР»РёС‡РµСЃС‚РІРѕ С‚СЂРµРєРѕРІ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ РЅСѓР»СЏ");
                 }
             }
             catch (NumberFormatException e) {
-                System.out.println("Количество треков альбома введена некорректно");
+                System.out.println("РљРѕР»РёС‡РµСЃС‚РІРѕ С‚СЂРµРєРѕРІ Р°Р»СЊР±РѕРјР° РІРІРµРґРµРЅР° РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ");
             }
         }
 
         Album album = new Album(albumName,tracks, length);
         this.setBestAlbum(album);
     }
-    //Не учитываем id и creationDate т.к. они генерируются автоматически
+    //РќРµ СѓС‡РёС‚С‹РІР°РµРј id Рё creationDate С‚.Рє. РѕРЅРё РіРµРЅРµСЂРёСЂСѓСЋС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё
     public int compareTo(MusicBand o) {
         int result = this.name.compareTo(o.name);
         if (result==0){
